@@ -1,4 +1,4 @@
 node_modules/
 .prettierrc
 config/default.json
-.env*.
+.env.*
