@@ -1,0 +1,31 @@
+{
+    "name": "mvc",
+    "version": "1.0.0",
+    "description": "MVC architecture",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "author": "Drosos Lalias",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "config": "^3.3.6",
+        "connect-flash": "^0.1.1",
+        "connect-mongodb-session": "^2.4.1",
+        "cors": "^2.8.5",
+        "csurf": "^1.11.0",
+        "date-and-time": "^1.0.0",
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "kill-port": "^1.6.1",
+        "mongoose": "^5.12.5",
+        "nodemailer": "^6.5.0",
+        "nodemailer-sendgrid-transport": "^0.2.0",
+        "nodemon": "^2.0.7"
+    },
+    "devDependencies": {
+        "custom-env": "^2.0.1"
+    }
+}

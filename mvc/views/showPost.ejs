@@ -1,0 +1,127 @@
+<%- include('includes/head')%>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <%- include('includes/spinner')%>
+    <link rel="stylesheet" href="/posts/style.css" />
+  </head>
+  <%- include('includes/navbar')%>
+  <body  onload="mySpinner()" id="bodyy">
+    <div id="loader"></div>
+    <section  id="section1" style='display:none; '  class="container">
+      <h1 style="color: rgba(42, 175, 157, 0.658);text-align: center;">
+        <%= post.user.username %> has a question...
+      </h1>
+      <br/>
+        <div class="post bg-white p-1 my-1">
+          <div>
+            <a style="color: rgba(50, 212, 191, 0.637)" >
+              <% let link = `https://eu.ui-avatars.com/api/` + post.user.username %>
+              <img
+                class="round-img"
+                src= <%= link %>
+                alt=""
+              />
+              <h4><%= post.user.username %></h4>
+            </a>
+          </div>
+          <div>
+            <h3 style="border-bottom: 2px solid rgb(31, 216, 230);text-align: left;">
+               <%= post.title %>
+          </h3>
+            <p style="white-space: pre-line" class="my-1">
+                <%= post.text %>
+            </p>
+             <p class="post-date">
+                Posted on : <%= (post.date.toString()).split("GMT")[0] %>
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="post-form">
+        <div  class="p">
+          <h4 style="background-color: rgb(220, 247, 247); border: 2px solid rgba(50, 212, 191, 0.637);
+          border-radius: 15px; padding: 3px;"><strong> Leave A Comment</strong></h4>
+        </div>
+        <form style=" border: 2px solid rgba(50, 212, 191, 0.637);
+        border-radius: 15px;" class="form my-1" method="POST" action="/createcomment/<%= post._id %>" >
+            <textarea
+            style="border: none;"
+            id="text"
+            name="text"
+            cols="30"
+            rows="5"
+            placeholder="Comment on this post"
+            required
+          ></textarea>
+          <div style="display: flex;">
+          <button style="background-color: #17a2b8; margin-left: 3px;" type="submit" class="btn btn-dark my-1"  >Submit</button>
+          <% if (!(post.comments.length> 0)) {%>
+            <a href="/browseposts" style="height:38px;margin-top: 4px;" class="btn btn-primary">
+                Go Back 
+              </a>
+              <% } %>
+        </div>
+        </form>
+      </div>
+      <div style="overflow-y: scroll; min-height:auto ; height: 500px;">
+      <% for (let comment of post.comments) { %>
+      <div class="comments">
+        <div class="post bg-white p-1 my-1">
+          <div>
+            <% let link = `https://eu.ui-avatars.com/api/` + comment.name %>
+            <a >
+              <img
+                class="round-img"
+                src=<%= link %>
+                alt=""
+              />
+              <h4><%= comment.name %></h4>
+            </a>
+          </div>
+          <div>
+            <p style="white-space: pre-line" class="my-1">
+              <%= comment.text %>
+            </p>
+             <p class="post-date">
+                Posted on : <%= (comment.date.toString()).split("GMT")[0] %>
+            </p>
+            <div style="display: flex;">
+           <a href="/browseposts" class="btn btn-primary">
+              Go Back 
+            </a>
+            <% if (comment.user.toString() == user._id) { %>
+              <form method="POST"  action="/browseposts/deletecomment/<%= post.id %>/<%= comment.id %>">
+            <button      
+            type="submit"
+            class="btn btn-danger"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+           <% }  %></form></div>
+          </div>
+        </div>
+        </div>
+        <% }  %>
+      </div>
+    </section>
+    <%- include('includes/footer')%>
+    <%- include('includes/end')%>
+
+    <script>
+        function mySpinner() {
+        let spin  = setTimeout(showPage, 150);
+        }
+        function showPage() {
+          document.getElementById("loader").style.display = "none";
+          document.getElementById("section1").style.display = "";
+        }
+        </script>

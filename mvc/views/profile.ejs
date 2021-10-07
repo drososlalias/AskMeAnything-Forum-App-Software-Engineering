@@ -1,0 +1,90 @@
+<%- include('includes/head') %>
+    <link rel="stylesheet" type="text/css" href="/landing/assets/css/Article-List.css"    />
+    <link rel="stylesheet" href="/landing/assets/css/Projects-Horizontal.css" />
+    <link rel="stylesheet" href="/landing/assets/css/styles.css" />
+    <link rel="stylesheet" href="/landing/assets/css/untitled.css" />
+  </head>
+  <%- include('includes/navbar') %>
+  <body>
+    <div  id="welcome">
+      <div  class="jumbotron">
+          <h2> Welcome to #My.AskMeAnything</h2><br>
+        <h4 style="color:rgba(8, 6, 17, 0.658)">Good to have you here , <%= user.username%> !</h4>
+        <p>😄😄😄</p>
+    </div>
+    </div>
+    <div class="projects-horizontal">
+      <div class="container">
+        <div class="intro"></div>
+        <div class="row projects">
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                  <img class="img-fluid"  src="/landing/assets/img/1.png"/>
+              </div>
+              <div class="col">
+                  <div class="imgs">
+                <h3 class="name">My Q&A's </h3>
+                <p class="description">Total Questions : <%= postsInfo.info.length %></p>
+                <p class="description">Total Answers : <%= commentsInfo.numOfComments %> </p>     
+             </div></div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+             <img class="img-fluid"  src="/landing/assets/img/5.jpg" />
+              </div>
+              <div class="col">
+                <div class="imgs">
+                <h3 class="name">Today's contributions</h3>
+                <p class="description">Today's Questions: <%= postsInfo.numOfPostsToday %></p>
+                <p class="description">Today's Answers: <%= commentsInfo.numOfCommentsToday %></p>
+              </div></div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a style="color: black;"  href="/createpost"
+                  ><img
+                    class="img-fluid"
+                    src="/landing/assets/img/66.jpg"
+                />
+              </div>
+              <div class="col">
+                  <div class="imgs1">
+                <h3 class="name">Ask a new question</h3></a>
+                <p class="description">
+                  Open a discussion by making your own questions!
+                </p>
+              </div></div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a style="color: black;"  href="/browseposts"
+                  ><img
+                    class="img-fluid"
+                    src="/landing/assets/img/4.jpg"
+                />
+              </div>
+              <div class="col">
+                  <div class="imgs1">
+                <h3 class="name">Browse Questions</h3></a>
+                <p class="description">
+                  Participate in a discussion or start one , just by answering a
+                  question , either for fun or just to help a buddy!
+                </p>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%- include("includes/footer") %>
+
+
+<%- include("includes/end") %>

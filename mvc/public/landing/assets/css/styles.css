@@ -1,0 +1,30 @@
+.col-sm-6.col-md-4 {
+    /*width: 40%;*/
+    /*width: 25%;*/
+    margin-left: 0;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-md-12 {
+    position: center;
+}
+
+@media (max-width: 800px) {
+    .row {
+        display: -ms-flexbox;
+        display: inline-flex;
+        -ms-flex-wrap: wrap;
+        text-align: center;
+        flex-wrap: wrap;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}

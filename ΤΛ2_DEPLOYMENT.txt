@@ -1,0 +1,30 @@
+MVC LINK : https://askmeanything-mvc.herokuapp.com/ 
+
+-----------------------
+MSS:
+
+authentication-service: https://auth-mss-service.herokuapp.com/ done
+
+browseposts-service: https://browseposts-service.herokuapp.com/ done
+
+client-service: https://client-mss-service.herokuapp.com/ done
+
+createcomment-service: https://createcomment-service.herokuapp.com/ done
+
+createpost-service: https://createpost-service.herokuapp.com/ done
+
+eventbus-service: https://eventbus-mss-service.herokuapp.com/ done
+
+keywordstatistics-service: https://keywordstatistics-service.herokuapp.com/ done
+
+questionsperday-service: https://questionsperday-service.herokuapp.com/ done
+
+singlepostdisplay-service: https://single-post-display-service.herokuapp.com/ done
+
+userprofile-service: https://user-profile-service-mss.herokuapp.com/ done
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<%- include('includes/head') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+<style>
+    #chart { height:auto; max-height : 600px;width:auto ; max-width:800px;margin-top:5%}
+</style>
+</head>
+<%- include('includes/navbar') %>
+<body style="background-color: rgba(177, 249, 252, 0.384);">
+    <% if(keywords.length == 0 ){ %>
+        <h1 style="text-align: center ; margin-top: 10%; color: rgba(13, 65, 58, 0.658);" > No active Questions were found. Create One 😁</h1>
+        <div style="width:100% ; text-align: center;">
+            <a style="margin-left: auto;" href="/createpost" class="btn btn-primary">
+                Ask One!
+              </a>
+        </div>
+       
+
+      <% } else { %>
+    
+ <h1 style="text-align: center; margin-bottom: 3%; color: rgb(5, 14, 14);" > Top #3 Used Keywords</h1>
+ <div style="margin-bottom: 10rem;">
+<div id ="chart" style="text-align:center; margin-top:5rem;"; class="container"> 
+    <canvas id="myChart"></canvas>
+</div></div>
+<% } %>
+    
+
+<script>
+    let keywords = '<%= keywords %>'.split(',');
+    let counts = '<%= counts %>'.split(',').map(x=>+x);
+    let myChart = document.getElementById("myChart").getContext('2d');
+    
+
+    let barChart = new Chart(myChart , {
+        type: 'bar',
+        data: {
+            labels:keywords , 
+            datasets:[{
+                label:'#3 Most Popular Keywords',
+                data: counts,  backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(177, 249, 252, 0.384)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            hoverBorderWidth: 3,
+            hoverBorderColor : '#000'
+        }]
+    },
+    options: {
+        // title: {
+        //     display: true ,
+        //     text: "TOP #3 USED KEYWORDS"
+        // },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+}); 
+</script>
+
+<%- include('includes/footer') %>
+<%- include('includes/end') %>

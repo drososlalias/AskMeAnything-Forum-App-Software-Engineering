@@ -1,0 +1,70 @@
+<%- include('includes/head') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+</head>
+<style>
+     #chart { height:auto; max-height : 600px ;width:auto ; max-width:800px;margin-top:5%}
+</style>
+<%- include('includes/navbar') %>
+<body style="background-color: rgba(177, 249, 252, 0.384);">
+    
+    <% if(dates.length == 0 ){ %>
+        <h1 style="text-align: center; margin-top: 10%; color: rgba(13, 65, 58, 0.658);" > No active Questions were found. Create One 😁</h1>
+        <div style="width:100% ; text-align: center;">
+            <a style="margin-left: auto;" href="/createpost" class="btn btn-primary">
+                Ask One!
+              </a>
+        </div>
+        
+      <% } else { %>
+      
+    <h1 style="text-align: center; margin-bottom: 3% ; color: rgb(5, 14, 14);" > Questions for the last 10 active days</h1>
+    <div  id ="chart" class="container" style="text-align:center;margin-bottom:15%">
+        <canvas id="myChart"></canvas>
+    </div>
+<% } %>
+
+<script>
+    let dates = '<%= dates %>'.split(',');
+    let counts = '<%= counts %>'.split(',').map(x=>+x);
+    let myChart = document.getElementById("myChart").getContext('2d');
+    
+
+    let barChart = new Chart(myChart , {
+        type: 'line',
+        data: {
+            labels:dates , 
+            datasets:[{
+                label:'# of questions',
+                data: counts,  backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            hoverBorderWidth: 3,
+            hoverBorderColor : '#000'
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+}); 
+</script>
+
+<%- include('includes/footer') %>
+<%- include('includes/end') %>

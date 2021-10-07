@@ -1,0 +1,60 @@
+<nav
+    style="background-color: rgba(191, 237, 245, 0.342)"
+    class="
+        navbar navbar-light navbar-expand-md
+        sticky-top
+        navigation-clean-button
+    "
+>
+    <div class="container">
+        <a class="navbar-brand" href="/">AskMeAnything</a>
+        <!-- onclick="toggleMenu()" -->
+        <button
+            type="button"
+            data-toggle="collapse"
+            class="navbar-toggler"
+            data-target="#navcol-1"
+        >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto"></ul>
+            <div class="navv">
+            <span class="navbar-text actions">
+                <% if (!isAuthenticated) {%>
+                <a class="login" href="/login">Log In</a
+                ><a
+                    class="btn btn-light action-button"
+                    role="button"
+                    href="/register"
+                    >Sign Up</a
+                >
+                <% } else { %>
+                <a class="login" href="/profile"
+                    ><i class="fas fa-user"></i> Dashboard</a
+                >
+                <form
+                    class="navbar-text actions"
+                    method="POST"
+                    action="/logout"
+                >
+                    <button class="btn btn-light action-button" type="submit">
+                        Logout
+                    </button>
+                </form>
+                <% }%>
+            </span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleMenu() {
+        let menu = document.getElementById("dropdown");
+        console.log(menu.style.display);
+        if (menu.style.display == "none") menu.style.display = "";
+        else menu.style.display = "none";
+    }
+</script>

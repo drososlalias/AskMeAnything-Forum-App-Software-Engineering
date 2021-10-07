@@ -1,0 +1,159 @@
+<%- include('includes/head')%>
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <%- include('includes/toggleButton')%>
+    <%- include('includes/searchInput')%>
+    <%- include('includes/spinner')%>
+    <link rel="stylesheet" href="/posts/style.css" />
+  </head>
+  <%- include('includes/navbar')%>
+  <body onload="mySpinner()" id="bodyy">
+        <div id="loader"></div>
+        <section  id="section" style="display: none" class="container">
+          <h1 style="color: rgba(42, 175, 157, 0.658);margin-left: 0%; text-align: center;">
+            Alone, we can do so little... but together we can do so much. 
+        </h1>
+        <h4 style="text-align:center ; color: rgba(13, 65, 58, 0.658);" >Browse over 1k questions!</h4>
+        <br/>
+        <div style="display: flex;">  
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Title.." title="Type in a Title" >
+                <div style="border:1px solid rgba(42, 175, 157, 0.658);padding-right: 3px; height: 51px; width: 80px;">
+                    <label class="switch" >
+                        <input id="checkbox" type="checkbox" onclick="myPosts()" >
+                        <span  class="slider round"></span>
+                    </label>
+                </div>
+        </div>
+        <% if(posts.length == 0 ){ %>
+            <h1 style="text-align: center; margin-top: 10%; color: rgba(13, 65, 58, 0.658);" > No active Questions were found. Create One 😁</h1>
+            <div style="text-align: center;">
+                <a style="margin-left: 50%" href="/createpost" class="btn btn-primary">
+                Ask One!
+                </a>
+             </div>
+          <% } %>
+          <div style="overflow-y: scroll; min-height:auto ;height: 1200px;">
+        <% for (let post of posts ) {%>
+      <div class="posts"  id ='<%= post.user.id %>' >
+        <div class="post bg-white p-1 my-1">
+          <div>
+            <a style="color: rgba(50, 212, 191, 0.637)" >
+              <% let link = `https://eu.ui-avatars.com/api/` + post.user.username %>
+              <img
+                class="round-img"
+                src= <%= link %>
+              />
+              <h4 class = "username" ><%= post.user.username %></h4>
+            </a>
+          </div>
+          <div>
+            <h4  class='title'>
+               <%= post.title %>
+          </h4>
+            <p style="white-space: pre-line"  class="my-1">
+                <%= post.text %>
+            </p>
+            <p style="white-space: pre-line;color:rgb(14, 7, 7)"  class="my-1">
+                Keywords : <%= post.keywords %>
+            </p>
+             <p class="post-date">
+                Posted on : <%= (post.date.toString()).split("GMT")[0] %>
+            </p>
+            <div style="display:flex">
+                <form method="POST" action="/browseposts/like/<%= post._id %>">
+                  <button style="width:90px" type="submit" class="btn btn-light">
+                    <i class="fas fa-thumbs-up"></i><span class='comment-count' style="margin-left: 10px;"><%- (post.likes == 'undefined') ? '0' : post.likes.length %>
+                  </button>
+                </form>
+                <form method="POST" action="/browseposts/unlike/<%= post._id %>">
+                    <button type="submit" class="btn btn-light">
+                      <i class="fas fa-thumbs-down"></i>
+                    </button>
+                  </form>
+            <a href="/browseposts/<%= post._id %>" class="btn btn-primary">
+              Discussion <span class='comment-count'><%- (post.comments == 'undefined') ? '0' : post.comments.length %></span>
+            </a>
+            <% if(post.user.id == user._id) { %>
+              <form method="POST"  action="/<%= post._id %>">
+            <button      
+            type="submit"
+            class="btn btn-danger"
+          >
+            <i class="fas fa-times"></i>
+          </button></form>
+           <% }  %></div>
+          </div>
+        </div>
+        </div>
+      <% }%> </div>
+    </section>
+    <%- include('includes/footer')%>
+    <%- include('includes/end')%>
+
+<script>
+    function myFunction() {
+        let userId = '<%= user._id %>'
+        let checked = document.getElementById('checkbox')
+        let input = document.getElementById("myInput");
+        let filter = input.value.toLowerCase();
+        let posts = document.getElementsByClassName('posts');
+        let title = document.getElementsByClassName('title')
+        if(checked.checked){
+            for (i = 0; i < posts.length; i++) {
+            if (posts[i].innerText.toLowerCase().includes(filter) && title[i].innerText.toLowerCase().includes(filter) && posts[i].id == userId) {  
+            posts[i].style.display = "";
+            } else {
+            posts[i].style.display = "none";
+        }}
+        }
+        else{ 
+            for (i = 0; i < posts.length; i++) {
+            if (posts[i].innerText.toLowerCase().includes(filter) && title[i].innerText.toLowerCase().includes(filter) ) {
+            posts[i].style.display = "";
+            } else {
+            posts[i].style.display = "none";
+        }}}
+    }
+</script>
+
+<script>
+    function myPosts() {
+        let input = document.getElementById("myInput");
+        input.value = ""
+        let checked = document.getElementById('checkbox')
+        let userId = '<%= user._id %>'
+        let posts = document.getElementsByClassName('posts');
+        if(checked.checked){
+            for(let i=0;i<posts.length;i++){
+                if(posts[i].id == userId){
+                    posts[i].style.display= ""
+                }
+                else{
+                    posts[i].style.display = "none"
+                }
+            }}
+        else{
+            for (let i = 0; i < posts.length; i++) {
+                posts[i].style.display=""   
+            }
+        }
+    }
+</script>
+
+<script>
+    function mySpinner() {
+    let spin  = setTimeout(showPage, 150);
+    }
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("section").style.display = "";
+    }
+    </script>

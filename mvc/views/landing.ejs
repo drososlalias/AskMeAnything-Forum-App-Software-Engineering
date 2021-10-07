@@ -1,0 +1,143 @@
+<%- include('includes/head') %>
+    <link rel="stylesheet" type="text/css" href="/landing/assets/css/Article-List.css"    />
+    <link rel="stylesheet" href="/landing/assets/css/Projects-Horizontal.css" />
+    <link rel="stylesheet" href="/landing/assets/css/styles.css" />
+    <link rel="stylesheet" href="/landing/assets/css/untitled.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"  />
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous">  
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link
+    rel="stylesheet"
+    href="/auth/assets/css/OcOrato---Login-form.css"
+  />
+    <%- include('includes/spinner')%>
+  </head>
+  <%- include('includes/navbar') %>
+  <body onload="mySpinner()">
+    <div id="loader"></div>
+    <div id="myDiv" style="display: none;">
+    <div id="welcome">
+      <div class="jumbotron">
+        <% if (!isAuthenticated) { %>
+        <h2 >Welcome to #AskMeAnything</h2>
+        <p >The most famous Q&A site in the world!</p>
+        <p><a class="btn btn-primary" role="button" href="/about">Learn more</a></p>
+        <% } else { %>
+          <h2>Welcome to #AskMeAnything , <%= user.username%>!</h2>
+        <p>The most famous Q&A site in the world!</p>
+        <p><a class="btn btn-primary" role="button" href="/about">Learn more</a></p>
+        <% }%>
+      </div>
+    </div>
+    <div class="projects-horizontal">
+      <div class="container">
+        <div class="intro"></div>
+        <div class="row projects">
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a style="color:black;" href="/getstats"
+                  ><img  class="img-fluid"  src="/landing/assets/img/1.png"
+                />
+              </div>
+              <div class="col">
+                <h3 class="name">Questions Per Keyword</h3></a>
+                <p class="description">Save some time and search about a subject using keyword filtering!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a href="/questionsperday" style="color: black;"
+                  ><img class="img-fluid" src="/landing/assets/img/5.jpg"
+                />
+              </div>
+              <div class="col" style="margin-left: 15px;">
+                <h3 class="name">Questions Per Day</h3></a>
+                <p class="description">Daily statistics about our Website!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a style="color: black;" href="/createpost"
+                  ><img
+                    class="img-fluid"
+                    src="/landing/assets/img/66.jpg"
+                />
+              </div>
+              <div class="col">
+                <h3 class="name">Ask a new question</h3></a>
+                <p class="description">
+                  Open a discussion by making your own questions!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 item">
+            <div class="row">
+              <div class="col-md-12 col-lg-5">
+                <a style="color: black;"  href="/browseposts"
+                  ><img
+                    class="img-fluid"
+                    src="/landing/assets/img/4.jpg"
+                   
+                />
+              </div>
+              <div class="col">
+                <h3 class="name">Browse Questions</h3></a>
+                <p class="description">
+                  Participate in a discussion or start one , just by answering a
+                  question , either for fun or just to help a buddy!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <%- include("includes/footer") %>
+<%- include("includes/end") %>
+
+<script>
+    function mySpinner() {
+    let spin  = setTimeout(showPage, 100);
+    }
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("myDiv").style.display = "";
+    }
+    </script>
+
+    
+<script>
+    $( document ).ready(function() {
+       if ("<%= message %>"){
+        toastr["success"]("<%= message %>")}
+        toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "3000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    });
+    </script>

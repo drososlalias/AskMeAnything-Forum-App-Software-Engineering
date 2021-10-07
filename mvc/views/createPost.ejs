@@ -1,0 +1,38 @@
+<%- include('includes/head')%>
+
+    <link rel="stylesheet" href="/posts/style.css" />
+  </head>
+  <%- include('includes/navbar')%>
+  <body>
+    <section id="section" class="container">
+        <h1 style='text-align: center; color:rgba(23, 116, 116, 0.712)' >
+         Ask a Question
+        </h1>
+    <div id = "myDiv">
+      <p class="lead">
+        <i class="fas fa-user"></i> Fill in the form
+      </p>
+      <form class="form" method="POST" action='/createpost'>
+        <div class="form-group">
+          <input type="text" placeholder="Title" name="title" required/>
+          <small class="form-text"
+            >Describe your question</small
+          >
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Question Text" name="questiontext" required></textarea>
+          <small class="form-text">Make your question</small>
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Keywords" name="keywords" required/>
+            <small class="form-text"
+              >Set keywords for your question</small
+            >
+          </div>
+       
+        <input type="submit" value="Submit" class="btn btn-primary my-1" />
+        <a class="btn btn-light my-1" href="/">Go Back</a>
+      </form> </div>
+    </section>
+<%- include('includes/footer')%>
+<%- include('includes/end')%>

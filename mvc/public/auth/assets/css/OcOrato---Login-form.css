@@ -1,0 +1,88 @@
+#form {
+    max-width: 333px;
+    width: 90%;
+    left: 50%;
+    padding: 40px;
+    border: 1px solid rgb(233, 214, 214);
+    border-radius: 4px;
+    transform: translate(-50%, 0);
+    color: rgb(17, 1, 1);
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.829);
+    background-color: #ffffff;
+    margin-left: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 1;
+}
+.user-message {
+    margin-bottom: 3px;
+    margin-left: 40.2%;
+    width: 333px;
+    padding: 1rem;
+    border-radius: 3px;
+    border: 1px solid #4771fa;
+    background-color: #b9c9ff;
+}
+.user-message--error {
+    text-align: center;
+    border-color: red;
+    background-color: rgb(255, 176, 176);
+}
+
+#head {
+    text-align: center;
+}
+
+#image {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    max-height: 175px;
+    max-width: 175px;
+}
+
+#linkas {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+#butonas {
+    background: #70b2d0;
+    outline: none;
+    text-shadow: initial;
+}
+
+#formum {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+}
+
+#formum2 {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+}
+
+#registerDiv {
+    margin-top: 5%;
+    width: 100%;
+    background-color: rgb(193, 236, 243);
+}
+
+@media (max-width: 750px) {
+    #registerDiv {
+        margin-top: 0;
+        margin-bottom: 5%;
+    }
+}
